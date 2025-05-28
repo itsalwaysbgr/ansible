@@ -1,0 +1,23 @@
+- name: PLAY1
+  hosts: local
+  connection: local # no need of username and password
+  tasks:
+  - name: hello from play 1 and task1
+    ansbile.builtin.debug:
+      msg: "Hello from play 1 and task1"
+
+  - name: hello from play 1 and task2
+    ansbile.builtin.debug:
+      msg: "Hello from play 1 and task2"
+
+- name: PLAY2
+  hosts: local
+  connection: local
+  tasks:
+  - name: hello from play 2 and task1
+    ansbile.builtin.debug:
+      msg: "Hello from play 2 and task1"
+  
+  - name: hello from play 2 and task1
+    ansbile.builtin.debug:
+      msg: "Hello from play 2 and task1"
