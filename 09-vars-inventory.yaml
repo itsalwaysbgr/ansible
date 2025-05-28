@@ -3,6 +3,5 @@
   connection: local
   tasks:
   - name: print inventory variables
-    ansbile.builtin.debug:
+    ansible.builtin.debug:
       msg: "the trainer was {{TRAINER}} duration was {{DURATION}} and the subject was {{COURSE}}"
-      
