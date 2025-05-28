@@ -1,0 +1,17 @@
+- name: understand vars preference
+  hosts: local
+  connection: local
+  vars:
+    GREETING: "yo amigo "
+  vars_files:
+    - course.yaml
+  vars_prompt:
+  - name: GREETING
+    prompt: 'please enter the name'
+    private: false
+  tasks:
+  - name: print the GREETING
+    vars:
+      GREETING: hello from task
+    ansibe.builtin.debug:
+      msg: "{{GREETING}}"
