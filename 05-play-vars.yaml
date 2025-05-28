@@ -9,4 +9,3 @@
   - name: print course infromation
     ansible.builtin.debug:
       msg: "course is trained by trainer {{ trainer }} for duartion of  {{ duratation }} in {{ ansbile }}"
-      "
