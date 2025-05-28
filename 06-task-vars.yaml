@@ -2,14 +2,12 @@
   hosts: local
   connection: local
   vars:
-   course: "Ansible"
+   course: "DevOps ansible"
    duration: "8.23 HR"
    trainer: sk"
   tasks:
   - name: print course infromation
-    ansible.builtin.debug:
-      msg: "course is trained by trainer {{ trainer }} for duartion of  {{ duration }} in subject {{ course }}"
-
-  - name: print course infromation
+    vars:
+      course: "Ansible"
     ansible.builtin.debug:
       msg: "course is trained by trainer {{ trainer }} for duartion of  {{ duration }} in subject {{ course }}"
