@@ -7,11 +7,13 @@
    trainer: sk"
   tasks:
   - name: print course infromation
-    vars:
-      course: "Ansible"
-    ansible.builtin.debug:
-      msg: "course is trained by trainer {{ trainer }} for duartion of  {{ duration }} in subject {{ course }}"
+    ansbible.builtin.debug:
+      mgs: "course is trained by trainer {{ trainer }} for duartion of  {{ duration }} in subject {{ course }}"
 
   - name: print course infromation
+    vars:
+      course: "Ansible"
+      trainer: "John Doe"
+      duration: "5.5 HR"
     ansible.builtin.debug:
       msg: "course is trained by trainer {{ trainer }} for duartion of  {{ duration }} in subject {{ course }}"
