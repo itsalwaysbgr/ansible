@@ -1,6 +1,11 @@
-- name: written password, user and variables in inventory
-  hosts: frontend
+# This playbook demonstrates using variables defined in the inventory file for the 'frontend' group.
+# Variables TRAINER, DURATION, and COURSE should be set for each host in the [frontend] group in inventory.ini.
+
+- name: written password, user and variables in inventory   # Play name for clarity in output
+  hosts: frontend                                          # Target the 'frontend' group from inventory
   tasks:
-  - name: print course infromation
-    ansible.builtin.debug:
-      msg: "the trainer was {{TRAINER}} duration was {{DURATION}} and the subject was {{COURSE}}"
+    # This task prints the values of variables sourced from the inventory
+    - name: print course information
+      ansible.builtin.debug:
+        msg: "the trainer was {{TRAINER}} duration was {{DURATION}} and the subject was {{COURSE}}"
+        # Uses variables defined per host in the [frontend] section of inventory.ini

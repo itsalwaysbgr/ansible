@@ -1,9 +1,10 @@
-- name: variable from files
-  hosts: local 
-  connection: local
-  vars_files:
-    - course.yaml
+- name: variable from files                      # Play to demonstrate loading variables from an external file
+  hosts: local                                  # Target host group named 'local'
+  connection: local                             # Run tasks locally on the control machine
+  vars_files:                                   # List of YAML files containing variables to load into the play
+    - course.yaml                               # Load variables from 'course.yaml' (typically defines variables like COURSE, DURATION)
+
   tasks:
-  - name: print course infromation
-    ansible.builtin.debug:
-      msg: "Learning {{ COURSE }} with duration of {{ DURATION }}"
+    - name: print course information             # Task to output course information using variables from file
+      ansible.builtin.debug:
+        msg: "Learning {{ COURSE }} with duration of {{ DURATION }}"   # Output message using variables COURSE and DURATION

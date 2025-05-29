@@ -1,23 +1,23 @@
-- name: PLAY1
-  hosts: localhost
-  connection: local
+- name: PLAY1                      # First play named PLAY1
+  hosts: localhost                 # Target host: localhost
+  connection: local                # Run tasks locally on the control machine
   tasks:
-    - name: hello from play 1 and task1
+    - name: hello from play 1 and task1    # First task in PLAY1
       ansible.builtin.debug:
         msg: "Hello from play 1 and task1"
 
-    - name: hello from play 1 and task2
+    - name: hello from play 1 and task2    # Second task in PLAY1
       ansible.builtin.debug:
         msg: "Hello from play 1 and task2"
 
-- name: PLAY2
-  hosts: localhost
-  connection: local
+- name: PLAY2                      # Second play named PLAY2
+  hosts: localhost                 # Target host: localhost
+  connection: local                # Run tasks locally on the control machine
   tasks:
-    - name: hello from play 2 and task1
+    - name: hello from play 2 and task1    # First task in PLAY2
       ansible.builtin.debug:
         msg: "Hello from play 2 and task1"
     
-    - name: hello from play 2 and task2
+    - name: hello from play 2 and task2    # Second task in PLAY2
       ansible.builtin.debug:
         msg: "Hello from play 2 and task2"

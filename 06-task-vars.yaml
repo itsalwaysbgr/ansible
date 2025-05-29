@@ -1,27 +1,28 @@
-- name: play level variables
-  hosts: local
-  connection: local
-  vars:
-   course: "DevOps ansible"
-   duration: "8.23 HR"
-   trainer: sk"
-  tasks:
-  - name: print course infromation
-    vars:
-      course: "Ansible"
-      duration: "2.2 HR"
-      trainer: "ethan hunt"
-    ansible.builtin.debug:
-      msg: "course is trained by trainer {{ trainer }} for duartion of  {{ duration }} in subject {{ course }}"
-
-  - name: print course infromation
-    vars:
-      course: "rouge nation"
-      duration: "3.5 HR"
-      trainer: "dimitri"
-    ansible.builtin.debug:
-      msg: "course is trained by trainer {{ trainer }} for duartion of  {{ duration }} in subject {{ course }}"
+- name: play level variables                     # Play demonstrating play-level and task-level variables
+  hosts: local                                   # Target host group 'local'
+  connection: local                              # Run tasks locally on the control node
+  vars:                                         # Play-level variables (default values)
+    course: "DevOps ansible"                     # Default 'course' variable for the play
+    duration: "8.23 HR"                          # Default 'duration' variable for the play
+    trainer: "sk"                               # Default 'trainer' variable for the play
   
-  - name: print course infromation
-    ansible.builtin.debug:
-      msg: "course is trained by trainer {{ trainer }} for duartion of  {{ duration }} in subject {{ course }}"
+  tasks:
+    - name: print course information             # Task 1 with overridden variables at task level
+      vars:                                      # Task-level variables override play-level ones here
+        course: "Ansible"                        # Task-specific 'course' variable
+        duration: "2.2 HR"                       # Task-specific 'duration' variable
+        trainer: "ethan hunt"                    # Task-specific 'trainer' variable
+      ansible.builtin.debug:
+        msg: "course is trained by trainer {{ trainer }} for duration of {{ duration }} in subject {{ course }}"
+
+    - name: print course information             # Task 2 with different task-level variables
+      vars:                                      # These override play-level variables for this task only
+        course: "rouge nation"                   # Another task-specific 'course'
+        duration: "3.5 HR"                       # Another task-specific 'duration'
+        trainer: "dimitri"                       # Another task-specific 'trainer'
+      ansible.builtin.debug:
+        msg: "course is trained by trainer {{ trainer }} for duration of {{ duration }} in subject {{ course }}"
+
+    - name: print course information             # Task 3 uses play-level variables (no overrides)
+      ansible.builtin.debug:
+        msg: "course is trained by trainer {{ trainer }} for duration of {{ duration }} in subject {{ course }}"

@@ -1,15 +1,16 @@
-- name: play level variables
-  hosts: local
-  connection: local
-  vars:
-   course: "Ansible"
-   duration: "8.23 HR"
-   trainer: sk"
-  tasks:
-  - name: print course infromation
-    ansible.builtin.debug:
-      msg: "course is trained by trainer {{ trainer }} for duartion of  {{ duration }} in subject {{ course }}"
+- name: play level variables                # Play to demonstrate usage of variables
+  hosts: local                              # Target host group named 'local'
+  connection: local                         # Run tasks locally on control machine
+  vars:                                    # Define play-level variables
+    course: "Ansible"                       # Variable 'course' set to "Ansible"
+    duration: "8.23 HR"                     # Variable 'duration' set to "8.23 HR"
+    trainer: "sk"                          # Variable 'trainer' set to "sk"
 
-  - name: print course infromation repeat
-    ansible.builtin.debug:
-      msg: "course is trained by trainer {{ trainer }} for duartion of  {{ duration }} in subject {{ course }}"
+  tasks:
+    - name: print course information       # Task to print course info using variables
+      ansible.builtin.debug:
+        msg: "course is trained by trainer {{ trainer }} for duration of {{ duration }} in subject {{ course }}"
+
+    - name: print course information repeat  # Repeating the print task to demonstrate reuse
+      ansible.builtin.debug:
+        msg: "course is trained by trainer {{ trainer }} for duration of {{ duration }} in subject {{ course }}"

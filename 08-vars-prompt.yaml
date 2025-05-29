@@ -1,16 +1,16 @@
-- name: variables  from prompt
-  hosts: local
-  connection: local
-  vars_prompt:
-    - name: username
-      prompt: "Enter user name"
-      private: false
+- name: variables from prompt                            # Play to demonstrate prompting the user for variables
+  hosts: local                                          # Target host group named 'local'
+  connection: local                                     # Run tasks locally on the control machine
+  vars_prompt:                                          # Section for prompting the user for variable values
+    - name: username                                    # Prompt for a variable named 'username'
+      prompt: "Enter user name"                         # Message displayed to the user when prompting
+      private: false                                    # Value is not hidden (shown as typed)
 
-    - name: password
-      prompt: "Enter password"
-      private: true
+    - name: password                                    # Prompt for a variable named 'password'
+      prompt: "Enter password"                          # Message displayed to the user when prompting
+      private: true                                     # Value is hidden (not shown as typed for security)
 
   tasks:
-    - name: print user infromation
+    - name: print user information                      # Task to output the collected user information
       ansible.builtin.debug:
-        msg: "User name is {{ username }} and password in {{ password }}"
+        msg: "User name is {{ username }} and password is {{ password }}"  # Debug output with interpolated variables

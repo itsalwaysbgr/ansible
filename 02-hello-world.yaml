@@ -1,7 +1,16 @@
+# Define a new play to print "Hello World" locally
 - name: hello world
+  # Specify the group of hosts to target for this play (should have local host(s) listed)
   hosts: local
-  connection: local # no need of username and password
+  # Use the local connection method; no SSH required, runs on the control node
+  connection: local
+
+  # List of tasks to execute
   tasks:
+  # Task to print "Hello World" message
   - name: print hello world
+    # Use the debug module to print messages or variables
     ansible.builtin.debug:
+      # The message to display when the task runs
       msg: "Hello World"
+    # Description: This task prints a friendly "Hello World" message on each host in the local group.

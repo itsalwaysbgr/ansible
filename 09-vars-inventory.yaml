@@ -1,8 +1,13 @@
-- name: variables from inventory
-  hosts: local 
-  connection: local
-  tasks:
-  - name: print inventory variables
-    ansible.builtin.debug:
-      msg: "the trainer was {{TRAINER}} duration was {{DURATION}} and the subject was {{COURSE}}"
+# This playbook demonstrates how to use variables defined in the inventory file.
+# Variables TRAINER, DURATION, and COURSE should be set in the inventory for the 'local' group.
 
+- name: variables from inventory                # Play name for clarity in output
+  hosts: local                                 # Target the 'local' group from inventory
+  connection: local                            # Run tasks locally on the control machine
+
+  tasks:
+    # This task prints the values of variables sourced from the inventory
+    - name: print inventory variables
+      ansible.builtin.debug:
+        msg: "the trainer was {{TRAINER}} duration was {{DURATION}} and the subject was {{COURSE}}"
+        # Uses variables defined in [local:vars] section of inventory.ini

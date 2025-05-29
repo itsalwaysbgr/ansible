@@ -1,16 +1,28 @@
-- name: nginx install and run 
+# Define a new play to install and run Nginx
+- name: nginx install and run
+  # Specify the group of hosts to target for this play
   hosts: frontend
+  # Set this to yes to run tasks with elevated privileges (e.g., root)
   become: yes
+
+  # List of tasks to execute
   tasks:
+  # Task to install Nginx
   - name: install nginx
     ansible.builtin.package:
+      # Specify the package name
       name: nginx
+      # Ensure the package is installed
       state: present
+    # Description: This task installs Nginx if it's not already installed.
 
+  # Task to start and enable Nginx service
   - name: start nginx
     ansible.builtin.service:
+      # Specify the service name
       name: nginx
+      # Ensure the service is started
       state: started
+      # Ensure the service is enabled to start on boot
       enabled: yes
-
-
+    # Description: This task starts the Nginx service and enables it to start automatically on system boot.

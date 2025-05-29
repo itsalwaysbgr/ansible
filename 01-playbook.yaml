@@ -1,6 +1,14 @@
+# This play is designed to test connectivity ("ping") to all hosts in the "frontend" group.
 - name: ping the server
+  # Specify the group of hosts to target for this play; here, "frontend" represents your web servers.
   hosts: frontend
+
+  # List of tasks to execute
   tasks:
+  # This task checks if Ansible can reach and communicate with each host in the group.
   - name: ping the server
+    # Use Ansible's built-in ping module to perform a simple connectivity test.
     ansible.builtin.ping:
+      # (No additional arguments needed; the ping module just returns success if reachable.)
+    # This module does not use ICMP ping; instead, it verifies that Python is available on the remote host.
 
