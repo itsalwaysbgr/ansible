@@ -25,3 +25,15 @@
           - {'key':'trainer', 'value': 'sk'}
       ansible.builtin.debug:
         msg: "course info: {{ course | items2dict }}"
+
+    - name: conver to uppercase
+      vars:
+        policy: term
+      ansible.builtin.debug:
+        msg: "policy: {{ policy | upper }}"
+
+    - name: conver to lowercase
+      vars:
+        policy: TERM
+      ansible.builtin.debug:
+        msg: "policy: {{ policy | lower }}"
