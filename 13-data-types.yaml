@@ -1,0 +1,30 @@
+# This playbook demonstrates Ansible variable data types: string, integer, boolean, list, and dictionary.
+
+- name: ansible datatypes
+  hosts: local
+  connection: local
+  vars:
+    TRAINER: "sk"                # String variable
+    DURATION: 120                # Integer variable
+    COURSE: "Ansible Basics"     # String variable
+    IS_LIVE: true                # Boolean variable
+    TOOLS:                       # List variable
+      - "Ansible"
+      - "Docker"
+      - "Kubernetes"
+    CONCEPTS:                    # Dictionary variable
+      CI: Jenkins
+      SCRIPTING: "shell, python"
+
+  tasks:
+    - name: print course information
+      ansible.builtin.debug:
+        msg: |
+          The trainer was {{ TRAINER }},
+          duration was {{ DURATION }} minutes,
+          is_live: {{ IS_LIVE }},
+          the subject was {{ COURSE }}.
+          Tools covered: {{ TOOLS | join(', ') }}
+          Concepts:
+            - CI: {{ CONCEPTS.CI }}
+            - Scripting: {{ CONCEPTS.SCRIPTING }}

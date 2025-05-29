@@ -1,0 +1,21 @@
+# This playbook demonstrates the use of 'when' conditions in Ansible tasks.
+# It prints a message depending on whether NUMBER is less than/equal to 100 or greater than 100.
+
+- name: conditions demo
+  hosts: local
+  connection: local
+  vars:
+    NUMBER: 78   # Variable to test conditions
+
+  tasks:
+    # Task 1: Executes only if NUMBER is less than or equal to 100
+    - name: Print if the number is less than or equal to 100
+      ansible.builtin.debug:
+        msg: Given number {{ NUMBER }} is less than or equal to 100
+      when: NUMBER <= 100
+
+    # Task 2: Executes only if NUMBER is greater than 100
+    - name: Print if the number is greater than 100
+      ansible.builtin.debug:
+        msg: Given number {{ NUMBER }} is greater than 100
+      when: NUMBER > 100
