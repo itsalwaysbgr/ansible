@@ -15,5 +15,5 @@
     register: command_output2
 
   - name: print command_output2
-    ansbile.builtin.debug:
+    ansible.builtin.debug:
       msg: "{{ command_output2 }}"
