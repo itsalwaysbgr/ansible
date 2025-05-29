@@ -1,0 +1,13 @@
+- name: loops
+  hosts: local
+  connection: local
+  tasks:
+  - name: print names
+    ansible.builtin.debug:
+      msg: "Hello {{ item }}"
+    loop:
+      - ethan hunt
+      - james bond
+      - jason bourne
+      - john wick
+      - jack reacher
