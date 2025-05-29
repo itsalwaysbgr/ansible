@@ -1,22 +1,27 @@
+# Demonstrates use of Jinja2 filters: default, split, and items2dict in Ansible
+
 - name: functions
   hosts: local
   connection: local
   vars:
-    person: "dimitri, petrenko, peter "  # Define a variable 'person' with a default value
+    person: "dimitri, petrenko, peter"  # Comma-separated names as a string
   tasks:
-  - name: check undefined variable
-    ansible.builtin.debug:
-      msg: "Hello, {{ person | default('ethan hunt') }}"
+    # Task 1: Use 'default' filter to provide a fallback value if 'person' is undefined
+    - name: check undefined variable
+      ansible.builtin.debug:
+        msg: "Hello, {{ person | default('ethan hunt') }}"
 
-  - name: print name
-    ansible.builtin.debug:
-      msg:  " hola, {{ person | split(', ')}}"
+    # Task 2: Use 'split' filter to convert the string into a list
+    - name: print name
+      ansible.builtin.debug:
+        msg: "hola, {{ person | split(', ') }}"
 
-  - name: convert map into list
-    vars:
-      course:
-        name: ansible
-        duration: 10HR
-        trainer: sk
-    ansible.builtin.debug:
-      msg: "course info: {{ course| dict2items }}"
+    # Task 3: Use 'items2dict' filter to convert a list of key-value maps into a dictionary
+    - name: convert map into dict
+      vars:
+        course:
+          - {'key':'name', 'value': 'Ansible Basics'}
+          - {'key':'duration', 'value': 120}
+          - {'key':'trainer', 'value': 'sk'}
+      ansible.builtin.debug:
+        msg: "course info: {{ course | items2dict }}"
