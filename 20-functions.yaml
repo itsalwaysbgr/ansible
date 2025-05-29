@@ -11,4 +11,3 @@
   - name: print name
     ansible.builtin.debug:
       msg:  " hola, {{ person }}"
-      "
