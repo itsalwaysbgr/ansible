@@ -1,12 +1,30 @@
+---
+
+# This playbook installs or removes packages on hosts in the "frontend" group.
+# It uses the generic "package" module and loops over a list of dictionaries
+# containing package names and their desired states.
+
 - name: installing packages
+  # Target the group of hosts called "frontend"
   hosts: frontend
+  # Run tasks with elevated privileges (e.g., root or sudo)
   become: yes
+
   tasks:
-  - name: install packages
-    ansible.builtin.package:
-      name: "{{ item.name }}"
-      state: "{{ item.state }}"
-    loop:
-    - {name: nginx, state: present}
-    - {name: mysql, state: absent}
-    - {name: zip, state: absent}
+    # Task to install or remove packages using the package module
+    - name: install packages
+      ansible.builtin.package:
+        # Specify the package to install/remove using a variable from the dictionary
+        name: "{{ item.name }}"
+        # Specify the desired state of the package (present or absent)
+        state: "{{ item.state }}"
+      loop:
+        # Define the list of packages with their desired states
+        - {name: nginx, state: present}
+        # Install nginx
+        - {name: mysql, state: absent}
+        # Remove mysql
+        - {name: zip, state: absent}
+        # Remove zip
+        # This loop iterates over the list and fills in {{ item.name }} and {{ item.state }} 
+        # with each package's name and desired state

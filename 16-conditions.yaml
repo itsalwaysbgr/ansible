@@ -1,15 +1,23 @@
-- name: playbook control wsing ansible facts
-  hosts: frontend
-  become: yes
-  tasks:
-  - name: install nginx if redhat
-    ansible.builtin.dnf:
-      name: nginx
-      state: present
-    when: ansible_os_family == "RedHat"
+---
 
-  - name: install nginx if debian
-    ansible.builtin.apt:
-      name: nginx
-      state: present
-    when: ansible_os_family == "Debian"
+# This is an Ansible playbook to manage installation of nginx
+# on frontend hosts, using OS family facts for package management.
+
+- name: playbook control using ansible facts             # Playbook name and description
+  hosts: frontend                                       # Targets the 'frontend' group of hosts
+  become: yes                                           # Runs tasks with elevated privileges (root/sudo)
+
+  tasks:
+    # Install nginx on RedHat-based systems using the dnf package manager
+    - name: install nginx if redhat                     # Task name
+      ansible.builtin.dnf:                              # Uses Red Hat package manager (dnf)
+        name: nginx                                     # Package to install is nginx
+        state: present                                  # Ensures nginx is installed
+      when: ansible_os_family == "RedHat"               # Only runs on RedHat family systems
+
+    # Install nginx on Debian-based systems using the apt package manager
+    - name: install nginx if debian                     # Task name
+      ansible.builtin.apt:                              # Uses Debian package manager (apt)
+        name: nginx                                     # Package to install is nginx
+        state: present                                  # Ensures nginx is installed
+      when: ansible_os_family == "Debian"               # Only runs on Debian family systems

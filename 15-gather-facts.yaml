@@ -1,7 +1,14 @@
+# This playbook is named "gathering facts"
 - name: gathering facts
+  # Specify the target host(s) for this playbook; 'local' means the playbook will run on the local machine
   hosts: local
+  # Use the local connection method; this means tasks will run directly on the local machine without using SSH
   connection: local
+  # Define the tasks to be executed in this playbook
   tasks:
-  - name: print facts
-    ansible.builtin.debug:
-      msg: "{{ ansible_facts}}"
+    # Name this task "print facts"
+    - name: print facts
+      # Use the debug module to print a message
+      ansible.builtin.debug:
+        # The message to be printed; this will display all the gathered facts about the local machine
+        msg: "{{ ansible_facts }}"

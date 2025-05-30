@@ -1,12 +1,24 @@
+---
+
+# This is an Ansible playbook to manage package installation
+# on frontend hosts using the generic package module.
+
 - name: installing packages
   hosts: frontend
+  # Specifies the group of hosts to target for this playbook
   become: yes
+  # Run tasks with elevated privileges (e.g., root or sudo)
   tasks:
-  - name: install packages
-    ansible.builtin.package:
-      name: "{{ item }}"
-      state: installed
-    loop:
-    - mysql
-    - nginx
-    - zip
+    # Task to install packages using the package module
+    - name: install packages
+      ansible.builtin.package:
+        # Specify the package to install using a variable
+        name: "{{ item }}"
+        # Ensure the package is installed
+        state: installed
+      loop:
+        # Define the list of packages to install
+        - mysql
+        - nginx
+        - zip
+        # This loop iterates over the list and fills in {{ item }} with each package name

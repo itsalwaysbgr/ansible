@@ -1,13 +1,26 @@
+---
+
+# This is an Ansible playbook to demonstrate looping
+# over a list of items and printing a greeting message
+# for each item.
+
 - name: loops
   hosts: local
   connection: local
+  # Specify local connection to avoid SSH overhead for local tasks
+
   tasks:
-  - name: print names
-    ansible.builtin.debug:
-      msg: "Hello {{ item }}"
-    loop:
-      - ethan hunt
-      - james bond
-      - jason bourne
-      - john wick
-      - jack reacher
+    # Task to print a greeting message for each name in the list
+    - name: print names
+      ansible.builtin.debug:
+        # The msg keyword specifies the message to display
+        msg: "Hello {{ item }}" # item is a reserved keyword in ansbile and only it should be used.
+        # The {{ item }} syntax is Jinja2 templating to display the current item in the loop
+      loop:
+        # Define the list of items to loop over
+        - ethan hunt
+        - james bond
+        - jason bourne
+        - john wick
+        - jack reacher
+        # This loop iterates over the list of names and fills in {{ item }} with each name
